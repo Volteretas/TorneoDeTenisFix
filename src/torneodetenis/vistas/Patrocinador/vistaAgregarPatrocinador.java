@@ -135,7 +135,6 @@ public class vistaAgregarPatrocinador extends javax.swing.JInternalFrame {
             Patrocinador p = new Patrocinador(jtMarca.getText(), (String) jComboBox1.getSelectedItem());
             
             pd.agregarPatrocinador(p);
-            JOptionPane.showMessageDialog(null, "Se agrego correctamente");
             
         }catch(ClassNotFoundException ex){
             JOptionPane.showMessageDialog(null, "Error en la conexion " + ex);

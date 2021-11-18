@@ -414,7 +414,12 @@ public class vistaComenzarPartido extends javax.swing.JInternalFrame {
             PartidoData pd = new PartidoData(conexion);
             Partido partido = pd.buscarPartido(Integer.parseInt(jtID.getText()));
           
-            pd.comenzarPartido(partido);
+            if(partido.getEstado() == "Terminado"){
+                JOptionPane.showMessageDialog(null, "Su partido ya termino");
+            }else{
+                pd.comenzarPartido(partido);
+            }
+            
             
         }catch(ClassNotFoundException ex){
             JOptionPane.showMessageDialog(null, "Error en la conexion " + ex);

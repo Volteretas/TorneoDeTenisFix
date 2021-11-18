@@ -174,9 +174,14 @@ public class vistaTerminarPartido extends javax.swing.JInternalFrame {
             Torneo t = p.getTorneo();
             Ranking r = rd.obtenerRanking(j.getId_jugador(), t.getId_torneo());
             
+            if("Terminado".equals(p.getEstado()) || "Por jugar".equals(p.getEstado())  ){
+                JOptionPane.showMessageDialog(null, "Su partido ya termino o todavia no comienza");
+            }else{
+                td.agregarResultado(p, jtResultado.getText(), j);
+                rd.sumarPuntos(r, 3);
+                JOptionPane.showMessageDialog(null, "El partido termnino correctamente");            
+            }
             
-            td.agregarResultado(p, jtResultado.getText(), j);
-            rd.sumarPuntos(r, 3);
             
         }catch(ClassNotFoundException ex){
             JOptionPane.showMessageDialog(null, "Error en la conexion " + ex);

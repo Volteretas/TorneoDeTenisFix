@@ -56,15 +56,15 @@ public class TorneoDeTenis {
 //            Partido partido = new Partido(t1, es1, LocalDateTime.now(), jugador, j2, "DesUso", "0-0 0-0 0-0");
             
             
-            RankingData rd = new RankingData(conexion);
+//            RankingData rd = new RankingData(conexion);
+//            
+//            Ranking r = rd.obtenerRanking(1);
+//            
+//            rd.sumarPuntos(r, 3);
             
-            Ranking r = rd.obtenerRanking(1);
-            
-            rd.sumarPuntos(r, 3);
-            
-            
-                    
-                    
+              //System.out.println(patrocinio.obtenerPatrocinioJugador(5));
+              System.out.println(patrocinador.obtenerPatrocinador(4));
+              System.out.println(patrocinador.obtenerPatrocinador(5));      
                     
                     
 //           Partido p1 = new Partido(t1, es1, LocalDateTime.now(), jugador, j2, "Por jugar", "0-0 0-0 0-0");

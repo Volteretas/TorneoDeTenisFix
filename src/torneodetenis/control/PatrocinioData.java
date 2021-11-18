@@ -87,7 +87,7 @@ public class PatrocinioData {
             if(rs.next()){
                 patrocinio = new Patrocinio();
                 patrocinio.setId_patrocinio(rs.getInt("Id_patrocinio"));
-                patrocinio.setJugador(jd.obtenerJugador(rs.getInt("Id_jugador")));
+                patrocinio.setJugador(jd.obtenerJugador(rs.getInt(2)));
                 patrocinio.setPatrocinador(pd.obtenerPatrocinador(rs.getInt(2)));
             }
             ps.close();
@@ -121,11 +121,16 @@ public class PatrocinioData {
         List<Patrocinio> patrocinios = new ArrayList();
         Patrocinio patrocinio = null;
         try{
+            JugadorData jd = new JugadorData(conexion);
+            PatrocinadorData pd = new PatrocinadorData(conexion);
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idJugador);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                patrocinio = this.obtenerPatrocinio(rs.getInt("Id_patrocinio"));
+                patrocinio = new Patrocinio();
+                patrocinio.setId_patrocinio(rs.getInt("Id_patrocinio"));
+                patrocinio.setJugador(jd.obtenerJugador(rs.getInt(2)));
+                patrocinio.setPatrocinador(pd.obtenerPatrocinador(rs.getInt(3)));
                 patrocinios.add(patrocinio);
             }
             ps.close();

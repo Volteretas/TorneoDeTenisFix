@@ -46,7 +46,7 @@ public class PartidoData {
             ps.setInt(3, partido.getJugador1().getId_jugador());
             ps.setInt(4, partido.getJugador2().getId_jugador());
             ps.setTimestamp(5,Timestamp.valueOf(partido.getFechayhora()));
-            ps.setString(6,partido.getEstado());  
+            ps.setString(6,"Por jugar");  
             ps.setString(7,partido.getResultado());
           
             ps.executeUpdate();
