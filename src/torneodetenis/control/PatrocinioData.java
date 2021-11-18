@@ -41,9 +41,9 @@ public class PatrocinioData {
             ps.setInt(2, patrocinio.getPatrocinador().getId_patrocinador());
             ps.executeUpdate();
             ps.close();
-            
+            JOptionPane.showMessageDialog(null, "Se agrego correctamente");
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Error al agregar partido " + ex);
+            JOptionPane.showMessageDialog(null,"Error al agregar " + ex);
         }
     }
     
@@ -56,9 +56,9 @@ public class PatrocinioData {
             ps.setInt(3, patrocinio.getId_patrocinio());
             ps.executeUpdate();
             ps.close();
-            
+            JOptionPane.showMessageDialog(null, "Se actualizo correctamente");
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Error al agregar partido " + ex);
+            JOptionPane.showMessageDialog(null,"Error al actualizar " + ex);
         }
     }
     
@@ -69,8 +69,9 @@ public class PatrocinioData {
             ps.setInt(1, id);
             ps.executeUpdate();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Se borro correctamente");
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Error al agregar partido " + ex);
+            JOptionPane.showMessageDialog(null,"Error al borrar " + ex);
         }
     }
     

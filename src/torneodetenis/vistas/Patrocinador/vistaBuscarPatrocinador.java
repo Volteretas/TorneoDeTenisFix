@@ -53,6 +53,7 @@ public class vistaBuscarPatrocinador extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jbBuscar.setText("Buscar");
+        jbBuscar.setEnabled(false);
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBuscarActionPerformed(evt);
@@ -64,6 +65,14 @@ public class vistaBuscarPatrocinador extends javax.swing.JInternalFrame {
         jtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtIDActionPerformed(evt);
+            }
+        });
+        jtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtIDKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtIDKeyTyped(evt);
             }
         });
 
@@ -92,6 +101,7 @@ public class vistaBuscarPatrocinador extends javax.swing.JInternalFrame {
         );
 
         jbEditar.setText("Editar");
+        jbEditar.setEnabled(false);
         jbEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbEditarActionPerformed(evt);
@@ -106,6 +116,7 @@ public class vistaBuscarPatrocinador extends javax.swing.JInternalFrame {
         });
 
         jButton4.setText("Borrar");
+        jButton4.setEnabled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -121,6 +132,23 @@ public class vistaBuscarPatrocinador extends javax.swing.JInternalFrame {
         jtMarca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtMarcaActionPerformed(evt);
+            }
+        });
+        jtMarca.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtMarcaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtMarcaKeyTyped(evt);
+            }
+        });
+
+        jtIndumentaria.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtIndumentariaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtIndumentariaKeyTyped(evt);
             }
         });
 
@@ -171,9 +199,9 @@ public class vistaBuscarPatrocinador extends javax.swing.JInternalFrame {
                         .addContainerGap())))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbEditar)
                 .addContainerGap())
@@ -257,6 +285,60 @@ public class vistaBuscarPatrocinador extends javax.swing.JInternalFrame {
         jtIndumentaria.setText(null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jtIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyReleased
+        // TODO add your handling code here:
+        activarBotonBuscar();
+        activarBoton();
+    }//GEN-LAST:event_jtIDKeyReleased
+
+    private void jtMarcaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMarcaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtMarcaKeyTyped
+
+    private void jtIndumentariaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIndumentariaKeyReleased
+        // TODO add your handling code here:
+        activarBoton();
+    }//GEN-LAST:event_jtIndumentariaKeyReleased
+
+    private void jtMarcaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMarcaKeyReleased
+        // TODO add your handling code here:
+        activarBoton();
+    }//GEN-LAST:event_jtMarcaKeyReleased
+
+    private void jtIndumentariaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIndumentariaKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtIndumentariaKeyTyped
+
+    private void jtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if(caracter < '0' || caracter > '9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtIDKeyTyped
+
+    private void activarBotonBuscar(){
+       if(jtID.getText().isEmpty()){
+            jbBuscar.setEnabled(false);
+        }else{
+            jbBuscar.setEnabled(true);
+        }
+    }
+    
+    private void activarBoton(){
+       if(jtID.getText().isEmpty() || jtIndumentaria.getText().isEmpty() || jtMarca.getText().isEmpty()){
+            jbEditar.setEnabled(false);
+            jButton4.setEnabled(false);
+        }else{
+            jbEditar.setEnabled(true);
+            jButton4.setEnabled(true);
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;

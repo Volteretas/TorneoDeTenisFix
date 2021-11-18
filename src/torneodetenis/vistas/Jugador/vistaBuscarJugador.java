@@ -73,7 +73,17 @@ public class vistaBuscarJugador extends javax.swing.JInternalFrame {
 
         jLabel2.setText("ID Jugador");
 
+        jtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtIDKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtIDKeyTyped(evt);
+            }
+        });
+
         jbBuscar.setText("Buscar");
+        jbBuscar.setEnabled(false);
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBuscarActionPerformed(evt);
@@ -125,6 +135,32 @@ public class vistaBuscarJugador extends javax.swing.JInternalFrame {
         jtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtNombreActionPerformed(evt);
+            }
+        });
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtNombreKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNombreKeyTyped(evt);
+            }
+        });
+
+        jtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyTyped(evt);
+            }
+        });
+
+        jtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtDNIKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDNIKeyTyped(evt);
             }
         });
 
@@ -217,6 +253,7 @@ public class vistaBuscarJugador extends javax.swing.JInternalFrame {
         );
 
         jbEditar.setText("Editar");
+        jbEditar.setEnabled(false);
         jbEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbEditarActionPerformed(evt);
@@ -231,6 +268,7 @@ public class vistaBuscarJugador extends javax.swing.JInternalFrame {
         });
 
         jbBorrar.setText("Borrar");
+        jbBorrar.setEnabled(false);
         jbBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBorrarActionPerformed(evt);
@@ -256,10 +294,10 @@ public class vistaBuscarJugador extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel1)
                                 .addGap(229, 229, 229))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jbBorrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbNuevo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbBorrar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jbEditar)
                                 .addContainerGap())))))
         );
@@ -324,7 +362,12 @@ public class vistaBuscarJugador extends javax.swing.JInternalFrame {
             
         }catch(ClassNotFoundException ex){
             JOptionPane.showMessageDialog(null,"Error en la conexion " + ex);
+        }catch(NullPointerException ex) {
+            JOptionPane.showMessageDialog(null,"Ingrese datos validos" + ex);
         }
+       
+        activarBotonEditar();
+        activarBotonBuscar();
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
@@ -374,6 +417,77 @@ public class vistaBuscarJugador extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Error en la conexion " + ex);
         }
     }//GEN-LAST:event_jbBorrarActionPerformed
+
+    private void jtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if(caracter < '0' || caracter > '9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtIDKeyTyped
+
+    private void jtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDNIKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if(caracter < '0' || caracter > '9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtDNIKeyTyped
+
+    private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtNombreKeyTyped
+
+    private void activarBotonBuscar(){
+       if(jtID.getText().isEmpty()){
+            jbBuscar.setEnabled(false);
+        }else{
+            jbBuscar.setEnabled(true);
+        }
+    }
+    
+    private void activarBotonEditar(){
+       if(jtID.getText().isEmpty() || jtApellido.getText().isEmpty() || jtNombre.getText().isEmpty() || jtDNI.getText().isEmpty()){
+            jbEditar.setEnabled(false);
+            jbBorrar.setEnabled(false);
+        }else{
+            jbEditar.setEnabled(true);
+            jbBorrar.setEnabled(true);
+        }
+    }
+    
+    private void jtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtApellidoKeyTyped
+
+    private void jtIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyReleased
+        // TODO add your handling code here:
+        activarBotonBuscar();
+        activarBotonEditar();
+    }//GEN-LAST:event_jtIDKeyReleased
+
+    private void jtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyReleased
+        // TODO add your handling code here:
+        activarBotonEditar();
+    }//GEN-LAST:event_jtNombreKeyReleased
+
+    private void jtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyReleased
+        // TODO add your handling code here:
+        activarBotonEditar();
+    }//GEN-LAST:event_jtApellidoKeyReleased
+
+    private void jtDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDNIKeyReleased
+        // TODO add your handling code here:
+        activarBotonEditar();
+    }//GEN-LAST:event_jtDNIKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

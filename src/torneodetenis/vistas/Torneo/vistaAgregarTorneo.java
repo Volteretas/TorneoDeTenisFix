@@ -54,6 +54,15 @@ public class vistaAgregarTorneo extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Nombre");
 
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtNombreKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNombreKeyTyped(evt);
+            }
+        });
+
         jLabel3.setText("Fecha de inicio");
 
         jLabel4.setText("Fecha de fin");
@@ -95,6 +104,7 @@ public class vistaAgregarTorneo extends javax.swing.JInternalFrame {
         );
 
         jbAgregar.setText("Agregar");
+        jbAgregar.setEnabled(false);
         jbAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbAgregarActionPerformed(evt);
@@ -169,6 +179,26 @@ public class vistaAgregarTorneo extends javax.swing.JInternalFrame {
         jdInicio.setDate(null);
     }//GEN-LAST:event_jbNuevoActionPerformed
 
+    private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtNombreKeyTyped
+
+    private void jtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyReleased
+        // TODO add your handling code here:
+        activarBotonGuardar();
+    }//GEN-LAST:event_jtNombreKeyReleased
+    
+    private void activarBotonGuardar(){
+       if(jtNombre.getText().isEmpty()){
+            jbAgregar.setEnabled(false);
+        }else{
+            jbAgregar.setEnabled(true);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

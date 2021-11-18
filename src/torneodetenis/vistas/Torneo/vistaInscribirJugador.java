@@ -139,6 +139,8 @@ public class vistaInscribirJugador extends javax.swing.JInternalFrame {
 
     private void jcTorneoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcTorneoActionPerformed
         // TODO add your handling code here:
+        jcJugador.removeAllItems();
+        agregarItemJugador();
         
         
     }//GEN-LAST:event_jcTorneoActionPerformed

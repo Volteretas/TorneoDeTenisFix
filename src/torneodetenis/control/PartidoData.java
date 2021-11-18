@@ -23,7 +23,7 @@ import torneodetenis.modelo.Partido;
  * @author Santiago
  */
 public class PartidoData {
-    //Esta clase todavia no esta completa
+
     private Connection con;
     private Conexion conexion;
     
@@ -51,6 +51,7 @@ public class PartidoData {
           
             ps.executeUpdate();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Se agrego correctamente");
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Error al agregar partido " + ex);
         }
@@ -71,6 +72,7 @@ public class PartidoData {
             ps.setInt(8, partido.getId_partido());
             ps.executeUpdate();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Se actualizo correctamente");
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Error al conectar " + ex);
         }
@@ -100,6 +102,7 @@ public class PartidoData {
             ps.setString(1, "Jugando");
             ps.executeUpdate();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Comenzo el partido");
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al conectar "+ex);
         }
@@ -112,6 +115,9 @@ public class PartidoData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(2, partido.getId_partido());
             ps.setString(1, "Terminado");
+            ps.executeUpdate();
+            ps.close();
+            JOptionPane.showMessageDialog(null, "El partido termino");
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al conectar "+ex);
         }
@@ -128,6 +134,7 @@ public class PartidoData {
             ps.setString(3, "Terminado");
             ps.executeUpdate();
             ps.close();
+            JOptionPane.showMessageDialog(null, "El partido termino");
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al conectar "+ex);
         }

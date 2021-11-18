@@ -42,6 +42,8 @@ public class vistaObtenerRanking extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtRanking = new javax.swing.JTable();
 
+        setClosable(true);
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 25)); // NOI18N
         jLabel1.setText("Obtener Jugadores en el Ranking");
 

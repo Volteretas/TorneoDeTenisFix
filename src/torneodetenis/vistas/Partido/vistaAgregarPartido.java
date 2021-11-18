@@ -105,9 +105,26 @@ public class vistaAgregarPartido extends javax.swing.JInternalFrame {
         Minutos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Minutos.setText("Minutos");
 
+        jtHora.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtHoraKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtHoraKeyTyped(evt);
+            }
+        });
+
         jtMinutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtMinutosActionPerformed(evt);
+            }
+        });
+        jtMinutos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtMinutosKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtMinutosKeyTyped(evt);
             }
         });
 
@@ -116,7 +133,7 @@ public class vistaAgregarPartido extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(208, 208, 208)
+                .addGap(136, 136, 136)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel6)
                     .addComponent(jLabel5)
@@ -134,7 +151,7 @@ public class vistaAgregarPartido extends javax.swing.JInternalFrame {
                     .addComponent(jcTorneo, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcEstadio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jdFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(193, 193, 193))
+                .addGap(117, 117, 117))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,6 +188,7 @@ public class vistaAgregarPartido extends javax.swing.JInternalFrame {
         );
 
         jButton1.setText("Agregar");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -178,39 +196,43 @@ public class vistaAgregarPartido extends javax.swing.JInternalFrame {
         });
 
         jButton2.setText("Nuevo");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1)
-                        .addGap(109, 109, 109)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(296, 296, 296)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(209, 209, 209))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -306,7 +328,12 @@ public class vistaAgregarPartido extends javax.swing.JInternalFrame {
             LocalDateTime local = LocalDateTime.of(localda, LocalTime.of(horas, minutos));
             Partido p = new Partido(t, e, local, j1, j2, "Por Jugar", "0-0 0-0 0-0");
             
-            pd.agregarPartido(p);
+            if(j1.getId_jugador() == j2.getId_jugador()){
+                JOptionPane.showMessageDialog(null, "Seleccione jugadores diferentes");
+            }else{
+                pd.agregarPartido(p);
+            }
+            
         }catch(ClassNotFoundException ex){
             JOptionPane.showMessageDialog(null, "Error en la conexion " + ex);
         } 
@@ -317,6 +344,45 @@ public class vistaAgregarPartido extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtMinutosActionPerformed
 
+    private void jtHoraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtHoraKeyReleased
+        // TODO add your handling code here:
+        activarBotonGuardar();
+    }//GEN-LAST:event_jtHoraKeyReleased
+
+    private void jtMinutosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMinutosKeyReleased
+        // TODO add your handling code here:
+        activarBotonGuardar();
+    }//GEN-LAST:event_jtMinutosKeyReleased
+
+    private void jtHoraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtHoraKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if(caracter < '0' || caracter > '9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtHoraKeyTyped
+
+    private void jtMinutosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMinutosKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if(caracter < '0' || caracter > '9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtMinutosKeyTyped
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jtHora.setText(null);
+        jtMinutos.setText(null);
+    }//GEN-LAST:event_jButton2ActionPerformed
+    
+    private void activarBotonGuardar(){
+       if(jtHora.getText().isEmpty() || jtMinutos.getText().isEmpty()){
+            jButton1.setEnabled(false);
+        }else{
+            jButton1.setEnabled(true);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Minutos;

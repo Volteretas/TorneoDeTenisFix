@@ -81,9 +81,35 @@ public class vistaAgregarJugador extends javax.swing.JInternalFrame {
 
         jLabel9.setText("Mano habil");
 
+        jtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtNombreKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNombreKeyTyped(evt);
+            }
+        });
+
+        jtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtApellidoKeyTyped(evt);
+            }
+        });
+
         jtDNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtDNIActionPerformed(evt);
+            }
+        });
+        jtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtDNIKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtDNIKeyTyped(evt);
             }
         });
 
@@ -180,6 +206,7 @@ public class vistaAgregarJugador extends javax.swing.JInternalFrame {
         );
 
         jButton1.setText("Agregar");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -200,15 +227,13 @@ public class vistaAgregarJugador extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)
-                        .addContainerGap())))
+                        .addComponent(jButton1)))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(277, 277, 277)
                 .addComponent(jLabel1)
@@ -271,8 +296,56 @@ public class vistaAgregarJugador extends javax.swing.JInternalFrame {
         }catch(ClassNotFoundException ex){
             JOptionPane.showMessageDialog(null, "Error en la conexion " + ex);
         }
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jtNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyReleased
+        // TODO add your handling code here:
+        activarBotonGuardar();
+    }//GEN-LAST:event_jtNombreKeyReleased
+
+    private void jtApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyReleased
+        // TODO add your handling code here:
+        activarBotonGuardar();
+    }//GEN-LAST:event_jtApellidoKeyReleased
+
+    private void jtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDNIKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if(caracter < '0' || caracter > '9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtDNIKeyTyped
+
+    private void jtDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDNIKeyReleased
+        // TODO add your handling code here:
+        activarBotonGuardar();
+    }//GEN-LAST:event_jtDNIKeyReleased
+
+    private void jtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNombreKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtNombreKeyTyped
+
+    private void jtApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtApellidoKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtApellidoKeyTyped
+    
+    private void activarBotonGuardar(){
+       if(jtNombre.getText().isEmpty() || jtApellido.getText().isEmpty() || jtDNI.getText().isEmpty()){
+            jButton1.setEnabled(false);
+        }else{
+            jButton1.setEnabled(true);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

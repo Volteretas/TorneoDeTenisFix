@@ -42,9 +42,9 @@ public class TorneoData {
             ps.setDate(3, Date.valueOf(torneo.getFecha_fin()));
             ps.executeUpdate();
             ps.close();
-            
+            JOptionPane.showMessageDialog(null, "Se agrego correctamente");
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Error al agregar partido " + ex);
+            JOptionPane.showMessageDialog(null,"Error al agregar " + ex);
         }
     }
     
@@ -58,9 +58,9 @@ public class TorneoData {
             ps.setInt(4, torneo.getId_torneo());
             ps.executeUpdate();
             ps.close();
-            
+            JOptionPane.showMessageDialog(null, "Se actualizo correctamente");
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Error al agregar partido " + ex);
+            JOptionPane.showMessageDialog(null,"Error al actualizar " + ex);
         }
     }
     
@@ -71,8 +71,9 @@ public class TorneoData {
             ps.setInt(1, id);
             ps.execute();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Se borro correctamente");
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Error al agregar partido " + ex);
+            JOptionPane.showMessageDialog(null,"Error al borrar " + ex);
         }
     }
     

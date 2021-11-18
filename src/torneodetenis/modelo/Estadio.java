@@ -120,7 +120,7 @@ public class Estadio {
 
     @Override
     public String toString() {
-        return "Estadio{" + "id_estadio=" + id_estadio + ", numero_ident=" + numero_ident + ", ciudad=" + ciudad + ", direccion=" + direccion + ", estado=" + estado + ", categoria=" + categoria + ", largo=" + largo + ", ancho=" + ancho + ", cantidad_espectadores=" + cantidad_espectadores + '}';
+        return id_estadio + " " + numero_ident + " " + ciudad + " " + direccion ;
     }
     
     

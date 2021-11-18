@@ -62,6 +62,7 @@ public class vistaBuscarEstadio extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jbBuscar.setText("Buscar");
+        jbBuscar.setEnabled(false);
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBuscarActionPerformed(evt);
@@ -75,12 +76,49 @@ public class vistaBuscarEstadio extends javax.swing.JInternalFrame {
                 jtIDActionPerformed(evt);
             }
         });
+        jtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtIDKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtIDKeyTyped(evt);
+            }
+        });
+
+        jtNrident.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtNridentKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtNridentKeyTyped(evt);
+            }
+        });
+
+        jtCiudad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtCiudadKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtCiudadKeyTyped(evt);
+            }
+        });
+
+        jtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtDireccionKeyReleased(evt);
+            }
+        });
 
         jtEstado.setEditable(false);
         jtEstado.setText("DesUso");
         jtEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtEstadoActionPerformed(evt);
+            }
+        });
+        jtEstado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtEstadoKeyReleased(evt);
             }
         });
 
@@ -138,7 +176,7 @@ public class vistaBuscarEstadio extends javax.swing.JInternalFrame {
                             .addComponent(jtNrident, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbBuscar)
                 .addGap(100, 100, 100))
         );
@@ -189,6 +227,7 @@ public class vistaBuscarEstadio extends javax.swing.JInternalFrame {
         jLabel1.setText("Editar Estadio");
 
         jbEditar.setText("Editar");
+        jbEditar.setEnabled(false);
         jbEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbEditarActionPerformed(evt);
@@ -196,6 +235,7 @@ public class vistaBuscarEstadio extends javax.swing.JInternalFrame {
         });
 
         jbBorrar.setText("Borrar");
+        jbBorrar.setEnabled(false);
         jbBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBorrarActionPerformed(evt);
@@ -214,21 +254,21 @@ public class vistaBuscarEstadio extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 633, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbNuevo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbBorrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbEditar)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(279, 279, 279))
+                        .addComponent(jbEditar)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(237, 237, 237))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,6 +302,8 @@ public class vistaBuscarEstadio extends javax.swing.JInternalFrame {
             jsLargo.setValue(e.getLargo());
             jsCantidad.setValue(e.getCantidad_espectadores());
             
+            activarBotonEditar();
+            
         }catch(ClassNotFoundException ex){
             JOptionPane.showMessageDialog(null, "Error en la conexion " + ex);
         }catch(NullPointerException ne){
@@ -289,6 +331,8 @@ public class vistaBuscarEstadio extends javax.swing.JInternalFrame {
         jsAncho.setValue(1);
         jsLargo.setValue(1);
         jsCantidad.setValue(2000);
+        activarBotonBuscar();
+        activarBotonEditar();
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
@@ -317,7 +361,74 @@ public class vistaBuscarEstadio extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbBorrarActionPerformed
 
+    private void jtIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyReleased
+        // TODO add your handling code here:
+        activarBotonBuscar();
+        activarBotonEditar();
+    }//GEN-LAST:event_jtIDKeyReleased
 
+    private void jtNridentKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNridentKeyReleased
+        // TODO add your handling code here:
+        activarBotonEditar();
+    }//GEN-LAST:event_jtNridentKeyReleased
+
+    private void jtCiudadKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCiudadKeyReleased
+        // TODO add your handling code here:activarBotonEditar();zz
+        activarBotonEditar();
+    }//GEN-LAST:event_jtCiudadKeyReleased
+
+    private void jtDireccionKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtDireccionKeyReleased
+        // TODO add your handling code here:
+        activarBotonEditar();
+    }//GEN-LAST:event_jtDireccionKeyReleased
+
+    private void jtEstadoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtEstadoKeyReleased
+        // TODO add your handling code here:
+        activarBotonEditar();
+    }//GEN-LAST:event_jtEstadoKeyReleased
+
+    private void jtCiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtCiudadKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if((caracter < 'a' || caracter > 'z') && (caracter < 'A' || caracter > 'Z')){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtCiudadKeyTyped
+
+    private void jtNridentKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtNridentKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if(caracter < '0' || caracter > '9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtNridentKeyTyped
+
+    private void jtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if(caracter < '0' || caracter > '9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtIDKeyTyped
+    
+    private void activarBotonBuscar(){
+       if(jtID.getText().isEmpty()){
+            jbBuscar.setEnabled(false);
+        }else{
+            jbBuscar.setEnabled(true);
+        }
+    }
+    
+    private void activarBotonEditar(){
+       if(jtID.getText().isEmpty() || jtNrident.getText().isEmpty() || jtCiudad.getText().isEmpty() || jtDireccion.getText().isEmpty() || jtEstado.getText().isEmpty()){
+            jbEditar.setEnabled(false);
+            jbBorrar.setEnabled(false);
+        }else{
+            jbEditar.setEnabled(true);
+            jbBorrar.setEnabled(true);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

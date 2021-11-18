@@ -45,7 +45,7 @@ public class JugadorData {
             ps.setBoolean(8, jugador.getDiestro());
             ps.executeUpdate();
             ps.close();
-            
+            JOptionPane.showMessageDialog(null, "Se agrego correctamente");
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Error al agregar partido " + ex);
         }
@@ -66,8 +66,9 @@ public class JugadorData {
             ps.setInt(9, jugador.getId_jugador());
             ps.executeUpdate();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Se actualizo correctamente");
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Error al agregar partido " + ex);
+            JOptionPane.showMessageDialog(null,"Error al actualizar partido " + ex);
         }
     }
     
@@ -78,8 +79,9 @@ public class JugadorData {
             ps.setInt(1, id);
             ps.executeUpdate();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Se borro correctamente" );
         }catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,"Error al agregar partido " + ex);
+            JOptionPane.showMessageDialog(null,"Error al borrar partido " + ex);
         }
     }
     

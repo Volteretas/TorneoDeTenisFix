@@ -90,6 +90,7 @@ public class vistaComenzarPartido extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jbBuscar.setText("Buscar");
+        jbBuscar.setEnabled(false);
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBuscarActionPerformed(evt);
@@ -99,12 +100,21 @@ public class vistaComenzarPartido extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("ID Partido");
 
+        jtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtIDKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtIDKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(190, 190, 190)
+                .addGap(144, 144, 144)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jtID, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,10 +167,26 @@ public class vistaComenzarPartido extends javax.swing.JInternalFrame {
                 jtHorasActionPerformed(evt);
             }
         });
+        jtHoras.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtHorasKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtHorasKeyTyped(evt);
+            }
+        });
 
         jtMinutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtMinutosActionPerformed(evt);
+            }
+        });
+        jtMinutos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jtMinutosKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtMinutosKeyTyped(evt);
             }
         });
 
@@ -260,6 +286,7 @@ public class vistaComenzarPartido extends javax.swing.JInternalFrame {
         );
 
         jbComenzar.setText("Comenzar");
+        jbComenzar.setEnabled(false);
         jbComenzar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbComenzarActionPerformed(evt);
@@ -267,6 +294,7 @@ public class vistaComenzarPartido extends javax.swing.JInternalFrame {
         });
 
         jbEditar.setText("Editar");
+        jbEditar.setEnabled(false);
         jbEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbEditarActionPerformed(evt);
@@ -274,6 +302,7 @@ public class vistaComenzarPartido extends javax.swing.JInternalFrame {
         });
 
         jbBorrar.setText("Borrar");
+        jbBorrar.setEnabled(false);
         jbBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBorrarActionPerformed(evt);
@@ -359,7 +388,11 @@ public class vistaComenzarPartido extends javax.swing.JInternalFrame {
             
         }catch(ClassNotFoundException ex){
             JOptionPane.showMessageDialog(null, "Error en la conexion " + ex);
+        }catch(NullPointerException ex){
+            JOptionPane.showMessageDialog(null, "Su elemento no existe " + ex);
         }
+        activarBotonGuardar();
+        activarBotonBuscar();
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jtEstadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtEstadioActionPerformed
@@ -423,6 +456,46 @@ public class vistaComenzarPartido extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Error en la conexion " + ex);
         }
     }//GEN-LAST:event_jbBorrarActionPerformed
+
+    private void jtHorasKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtHorasKeyReleased
+        // TODO add your handling code here:
+        activarBotonGuardar();
+    }//GEN-LAST:event_jtHorasKeyReleased
+
+    private void jtMinutosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMinutosKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if(caracter < '0' || caracter > '9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtMinutosKeyTyped
+
+    private void jtMinutosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtMinutosKeyReleased
+        // TODO add your handling code here:
+        activarBotonGuardar();
+    }//GEN-LAST:event_jtMinutosKeyReleased
+
+    private void jtIDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyReleased
+        // TODO add your handling code here:
+        activarBotonGuardar();
+        activarBotonBuscar();
+    }//GEN-LAST:event_jtIDKeyReleased
+
+    private void jtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtIDKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if(caracter < '0' || caracter > '9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtIDKeyTyped
+
+    private void jtHorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtHorasKeyTyped
+        // TODO add your handling code here:
+        char caracter = evt.getKeyChar();
+        if(caracter < '0' || caracter > '9'){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jtHorasKeyTyped
     
     private void agregarItemTorneo(){
         try{
@@ -487,6 +560,27 @@ public class vistaComenzarPartido extends javax.swing.JInternalFrame {
         }     
     }
     
+    
+    
+    private void activarBotonGuardar(){
+       if(jtID.getText().isEmpty() || jtHoras.getText().isEmpty() || jtMinutos.getText().isEmpty()){
+            jbBorrar.setEnabled(false);
+            jbComenzar.setEnabled(false);
+            jbEditar.setEnabled(false);
+        }else{
+            jbBorrar.setEnabled(true);
+            jbComenzar.setEnabled(true);
+            jbEditar.setEnabled(true);
+        }
+    }
+    
+    private void activarBotonBuscar(){
+       if(jtID.getText().isEmpty()){
+            jbBuscar.setEnabled(false);
+        }else{
+            jbBuscar.setEnabled(true);
+        }
+    }
     
     
 

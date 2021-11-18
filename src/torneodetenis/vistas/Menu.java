@@ -5,8 +5,17 @@
  */
 package torneodetenis.vistas;
 
+import com.formdev.flatlaf.FlatDarkLaf;
 import torneodetenis.vistas.Estadio.vistaAgregarEstadio;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.UIManager;
 import torneodetenis.vistas.Estadio.vistaBuscarEstadio;
 import torneodetenis.vistas.Estadio.vistaObtenerEstadios;
 import torneodetenis.vistas.Jugador.vistaAgregarJugador;
@@ -23,9 +32,13 @@ import torneodetenis.vistas.Patrocinio.vistaObtenerPatrocinios;
 import torneodetenis.vistas.Patrocinio.vistaPatrocinioDeJugador;
 import torneodetenis.vistas.Patrocinio.vistasAgregarPatrocinio;
 import torneodetenis.vistas.Ranking.vistaObtenerRanking;
+import torneodetenis.vistas.Ranking.vistaObtenerRankingTrabajo;
 import torneodetenis.vistas.Torneo.vistaAgregarTorneo;
+import torneodetenis.vistas.Torneo.vistaBuscarTorneo;
 import torneodetenis.vistas.Torneo.vistaInscribirJugador;
 import torneodetenis.vistas.Torneo.vistarObtenerTorneos;
+import torneodetenis.vistas.Torneo.vistasObtenerJugadoresTorneo;
+import torneodetenis.vistas.Torneo.vistasObtenerTorneosJugadores;
 
 /**
  *
@@ -37,7 +50,13 @@ public class Menu extends javax.swing.JFrame {
      * Creates new form Menu
      */
     public Menu() {
+        try{
+        UIManager.setLookAndFeel(new FlatDarkLaf());
+        }catch(Exception ex){
+        ex.printStackTrace();
+        }
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -49,13 +68,26 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Escritorio = new javax.swing.JDesktopPane();
+        try{
+            URL url = new URL("https://i.imgur.com/SFGB88T.png");
+            BufferedImage c = ImageIO.read(url);
+            ImageIcon icon = new ImageIcon(c);
+            Image image = icon.getImage();
+            Escritorio = new javax.swing.JDesktopPane(){
+
+                public void paintComponent(Graphics g){
+                    g.drawImage(image,0,0,getWidth(),getHeight(),this);
+                }
+
+            };
+        }catch(IOException ex){
+            System.out.println(ex);
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -75,8 +107,12 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem29 = new javax.swing.JMenuItem();
         jMenuItem30 = new javax.swing.JMenuItem();
         jMenuItem33 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         MostrarRanking = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,11 +120,11 @@ public class Menu extends javax.swing.JFrame {
         Escritorio.setLayout(EscritorioLayout);
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 689, Short.MAX_VALUE)
+            .addGap(0, 767, Short.MAX_VALUE)
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 508, Short.MAX_VALUE)
+            .addGap(0, 532, Short.MAX_VALUE)
         );
 
         jMenu2.setText("Estadio");
@@ -116,14 +152,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem5);
-
-        jMenuItem8.setText("Inscribir Jugador");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem8);
 
         jMenuBar1.add(jMenu2);
 
@@ -268,17 +296,49 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem33);
 
+        jMenuItem8.setText("Inscribir Jugador");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem8);
+
+        jMenuItem14.setText("Obtener Jugadores");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem14);
+
+        jMenuItem15.setText("Obtener Torneos");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem15);
+
         jMenuBar1.add(jMenu6);
 
         jMenu5.setText("Ranking");
 
-        MostrarRanking.setText("jMenuItem14");
+        MostrarRanking.setText("Ranking");
         MostrarRanking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MostrarRankingActionPerformed(evt);
             }
         });
         jMenu5.add(MostrarRanking);
+
+        jMenuItem16.setText("Ranking Torneo");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem16);
 
         jMenuBar1.add(jMenu5);
 
@@ -288,11 +348,11 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(Escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(Escritorio)
         );
 
         pack();
@@ -390,6 +450,17 @@ public class Menu extends javax.swing.JFrame {
 
     private void jMenuItem30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem30ActionPerformed
         // TODO add your handling code here:
+        Escritorio.removeAll();
+        Escritorio.repaint();
+        vistaBuscarTorneo vbt = new vistaBuscarTorneo();
+        
+        Dimension escritorioSize = Escritorio.getSize();
+        Dimension vfmSize = vbt.getSize();
+        
+        vbt.setLocation((escritorioSize.width - vfmSize.width)/2, (escritorioSize.height - vfmSize.height)/2);
+        
+        vbt.setVisible(true);
+        Escritorio.add(vbt);
     }//GEN-LAST:event_jMenuItem30ActionPerformed
 
     private void jMenuItem29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem29ActionPerformed
@@ -565,6 +636,45 @@ public class Menu extends javax.swing.JFrame {
         Escritorio.add(vor);
     }//GEN-LAST:event_MostrarRankingActionPerformed
 
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        Escritorio.repaint();
+        vistasObtenerJugadoresTorneo vojt = new vistasObtenerJugadoresTorneo();
+        
+        Dimension escritorioSize = Escritorio.getSize();
+        Dimension vfmSize = vojt.getSize();
+        
+        vojt.setLocation((escritorioSize.width - vfmSize.width)/2, (escritorioSize.height - vfmSize.height)/2);  
+        vojt.setVisible(true);
+        Escritorio.add(vojt);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+        Escritorio.repaint();
+        vistasObtenerTorneosJugadores votj = new vistasObtenerTorneosJugadores();
+        
+        Dimension escritorioSize = Escritorio.getSize();
+        Dimension vfmSize = votj.getSize();
+        
+        votj.setLocation((escritorioSize.width - vfmSize.width)/2, (escritorioSize.height - vfmSize.height)/2);  
+        votj.setVisible(true);
+        Escritorio.add(votj);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        Escritorio.repaint();
+        vistaObtenerRankingTrabajo vort = new vistaObtenerRankingTrabajo();
+        
+        Dimension escritorioSize = Escritorio.getSize();
+        Dimension vfmSize = vort.getSize();
+        
+        vort.setLocation((escritorioSize.width - vfmSize.width)/2, (escritorioSize.height - vfmSize.height)/2);  
+        vort.setVisible(true);
+        Escritorio.add(vort);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -615,6 +725,9 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;

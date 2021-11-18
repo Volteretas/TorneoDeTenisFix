@@ -16,6 +16,7 @@ import torneodetenis.modelo.Conexion;
 import torneodetenis.modelo.Jugador;
 import torneodetenis.modelo.Partido;
 import torneodetenis.modelo.Ranking;
+import torneodetenis.modelo.Torneo;
 
 /**
  *
@@ -43,6 +44,7 @@ public class RankingData {
             ps.setInt(3, 0);
             ps.executeUpdate();
             ps.close();
+            JOptionPane.showMessageDialog(null, "Se agrego correctamente");
         }catch (SQLException ex){
             System.out.println("Error en la conexion " + ex);
         }
@@ -142,7 +144,7 @@ public class RankingData {
     public List<Ranking>obtenerRanking(){
         List<Ranking> ranking = new ArrayList();
         Ranking ranking1 = null;
-        String sql="SELECT * FROM ranking";
+        String sql="SELECT * FROM ranking ORDER BY Puntaje DESC";
 
             try{
                 PreparedStatement ps = con.prepareStatement(sql);
@@ -158,6 +160,47 @@ public class RankingData {
         return ranking;
     }
     
+    public List<Ranking>obtenerRankingTorneo(int idTorneo){
+        List<Ranking> ranking = new ArrayList();
+        Ranking ranking1 = null;
+        String sql="SELECT * FROM ranking WHERE Id_Torneo = ? ORDER BY Puntaje DESC";
+            try{
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, idTorneo);
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    ranking1 = this.obtenerRanking(rs.getInt("Id_Ranking"));
+                    ranking.add(ranking1);
+                }
+                ps.close();
+            }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al conectar "+ex);
+            }
+        return ranking;
+    }
+    
+    public List<Torneo> obtenerTorneosJugador(int idjugador){
+        List<Torneo> torneos = new ArrayList();
+        Torneo t = null;
+        String sql = "SELECT Id_Torneo FROM ranking WHERE Id_jugador = ?";
+        try{
+                TorneoData td = new TorneoData(conexion);
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, idjugador);
+                ResultSet rs = ps.executeQuery();
+                while(rs.next()){
+                    t = td.obtenerTorneo(rs.getInt("Id_Torneo"));
+                    torneos.add(t);
+                }
+                ps.close();
+            }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al conectar "+ex);
+            }
+        return torneos;
+    }
+    
+    
+    
     public void sumarPuntos(Ranking ran, int puntos){
         String sql = "UPDATE `ranking` SET `Puntaje`=Puntaje+? WHERE Id_Ranking =?;";
         try{
@@ -167,7 +210,7 @@ public class RankingData {
             ps.setInt(2, ran.getId_Ranking());
             ps.executeUpdate();
             ps.close();
-            
+            JOptionPane.showMessageDialog(null, "Se sumaron puntos");
         }catch (SQLException ex){
             System.out.println("Error en la conexion " + ex);
         }
@@ -180,7 +223,7 @@ public class RankingData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, puntos);
             ps.setInt(2, ran.getId_Ranking());
-            
+            JOptionPane.showMessageDialog(null, "Se restaron puntos");
         }catch (SQLException ex){
             System.out.println("Error en la conexion " + ex);
         }

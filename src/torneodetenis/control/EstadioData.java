@@ -49,6 +49,7 @@ public class EstadioData {
                 estadio.setId_estadio(1);
             }
             ps.close();
+            JOptionPane.showMessageDialog(null, "Se agrego correctamente");
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al insertar Estadio "+ex);
         }
@@ -70,7 +71,7 @@ public class EstadioData {
             ps.setInt(9, estadio.getId_estadio());
             ps.executeUpdate();
             ps.close();
-            
+            JOptionPane.showMessageDialog(null, "Se actualizo correctamente");
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al conectar " + ex);
         }
@@ -84,7 +85,7 @@ public class EstadioData {
             ps.setInt(1, id_estadio);
             ps.executeUpdate();
             ps.close();
-            
+            JOptionPane.showMessageDialog(null, "Se borro correctamente");
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al conectar "+ex);
         }
