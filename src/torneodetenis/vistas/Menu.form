@@ -148,7 +148,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Mostrar todos los Patrocinios"/>
+                <Property name="text" type="java.lang.String" value="Mostrar patrocinadores de jugador"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
@@ -274,7 +274,7 @@
     <Container class="javax.swing.JDesktopPane" name="Escritorio">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JDesktopPane(){&#xa;&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(image,0,0,getWidth(),getHeight(),this);&#xa;    }&#xa;&#xa;};&#xa;}catch(IOException ex){&#xa;    System.out.println(ex);&#xa;}"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try{&#xa;URL url = new URL(&quot;https://i.imgur.com/SFGB88T.png&quot;);&#xa;BufferedImage c = ImageIO.read(url);       &#xa;ImageIcon icon = new ImageIcon(c);&#xa;Image image = icon.getImage();"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="try{&#xa;URL url = new URL(&quot;https://i.imgur.com/FWtE5BZ.png&quot;);&#xa;BufferedImage c = ImageIO.read(url);       &#xa;ImageIcon icon = new ImageIcon(c);&#xa;Image image = icon.getImage();"/>
       </AuxValues>
 
       <Layout>

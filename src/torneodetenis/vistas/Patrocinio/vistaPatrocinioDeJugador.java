@@ -9,11 +9,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import torneodetenis.control.JugadorData;
-import torneodetenis.control.PatrocinadorData;
 import torneodetenis.control.PatrocinioData;
 import torneodetenis.modelo.Conexion;
 import torneodetenis.modelo.Jugador;
-import torneodetenis.modelo.Patrocinador;
 import torneodetenis.modelo.Patrocinio;
 /**
  *
@@ -161,7 +159,7 @@ public class vistaPatrocinioDeJugador extends javax.swing.JInternalFrame {
             PatrocinioData pd = new PatrocinioData(conexion);
         
             Jugador j1 = (Jugador) jJugadores.getSelectedItem();
-            ArrayList<Patrocinio> patrocinios = (ArrayList<Patrocinio>) pd.obtenerPatrocinioJugador(j1.getId_jugador());
+            ArrayList<Patrocinio> patrocinios = (ArrayList<Patrocinio>) pd.obtenerPatrociniosDeUnJugador(j1.getId_jugador());
         
             for(Patrocinio u : patrocinios){
             modelo.addRow(new Object[]{u.getPatrocinador().getId_patrocinador(), u.getPatrocinador().getMarca(), u.getPatrocinador().getIndumentaria()});

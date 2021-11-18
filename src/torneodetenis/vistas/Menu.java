@@ -69,7 +69,7 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         try{
-            URL url = new URL("https://i.imgur.com/SFGB88T.png");
+            URL url = new URL("https://i.imgur.com/FWtE5BZ.png");
             BufferedImage c = ImageIO.read(url);
             ImageIcon icon = new ImageIcon(c);
             Image image = icon.getImage();
@@ -259,7 +259,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem2);
 
-        jMenuItem3.setText("Mostrar todos los Patrocinios");
+        jMenuItem3.setText("Mostrar patrocinadores de jugador");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);

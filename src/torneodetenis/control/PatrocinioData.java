@@ -128,7 +128,7 @@ public class PatrocinioData {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 patrocinio = new Patrocinio();
-                patrocinio.setId_patrocinio(rs.getInt("Id_patrocinio"));
+                patrocinio.setId_patrocinio(rs.getInt(2));
                 patrocinio.setJugador(jd.obtenerJugador(rs.getInt(2)));
                 patrocinio.setPatrocinador(pd.obtenerPatrocinador(rs.getInt(3)));
                 patrocinios.add(patrocinio);
