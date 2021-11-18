@@ -173,6 +173,25 @@ public class PatrocinioData {
         return patrocinios;
     }
     
+    public List<Patrocinio> obtenerPatrocinioJugador(int id){
+        String sql = "SELECT * FROM patrocinio WHERE Id_jugador = ?";
+        List<Patrocinio> patrocinios = new ArrayList();
+        Patrocinio patrocinio = null;
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                patrocinio = this.obtenerPatrocinio(rs.getInt("Id_patrocinio"));
+                patrocinios.add(patrocinio);
+            }
+            ps.close();
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Error al agregar partido " + ex);
+        }
+        return patrocinios;
+    }
+    
     
     
 }

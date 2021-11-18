@@ -20,6 +20,7 @@ import torneodetenis.vistas.Patrocinador.vistaAgregarPatrocinador;
 import torneodetenis.vistas.Patrocinador.vistaBuscarPatrocinador;
 import torneodetenis.vistas.Patrocinador.vistaObtenerPatrocinadores;
 import torneodetenis.vistas.Patrocinio.vistaObtenerPatrocinios;
+import torneodetenis.vistas.Patrocinio.vistaPatrocinioDeJugador;
 import torneodetenis.vistas.Patrocinio.vistasAgregarPatrocinio;
 import torneodetenis.vistas.Ranking.vistaObtenerRanking;
 import torneodetenis.vistas.Torneo.vistaAgregarTorneo;
@@ -541,14 +542,14 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         Escritorio.repaint();
-        vistaObtenerPatrocinios vop = new vistaObtenerPatrocinios();
+        vistaPatrocinioDeJugador vmpj = new vistaPatrocinioDeJugador();
         
         Dimension escritorioSize = Escritorio.getSize();
-        Dimension vfmSize = vop.getSize();
+        Dimension vfmSize = vmpj.getSize();
         
-        vop.setLocation((escritorioSize.width - vfmSize.width)/2, (escritorioSize.height - vfmSize.height)/2);  
-        vop.setVisible(true);
-        Escritorio.add(vop);
+        vmpj.setLocation((escritorioSize.width - vfmSize.width)/2, (escritorioSize.height - vfmSize.height)/2);  
+        vmpj.setVisible(true);
+        Escritorio.add(vmpj);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void MostrarRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarRankingActionPerformed
